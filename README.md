@@ -1,70 +1,170 @@
-# Getting Started with Create React App
+## 🧩 Hooks Library
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Todos los hooks están agrupados por temática y presentados en bloques plegables `<details>` para que tu README quede limpio.  
+> Haz clic en cada título para ver la descripción.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+### 📡 Network & Async
+<details>
+<summary><strong>useFetch</strong> – peticiones HTTP con ciclo de vida</summary>
+Encapsula `fetch` y devuelve <code>{ loading, error, data }</code>.  
+Internamente usa <code>useAsync</code>.
+</details>
 
-### `npm start`
+<details>
+<summary><strong>useAsync</strong> – wrapper genérico para promesas</summary>
+Gestiona cualquier `Promise` y expone <code>{ loading, error, value }</code>.
+</details>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<details>
+<summary><strong>useScript</strong> – carga de scripts externos</summary>
+Inyecta un &lt;script&gt; en el DOM y controla sus estados `loading / éxito / error` (basado en <code>useAsync</code>).
+</details>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+### 💾 State & Storage
+<details>
+<summary><strong>useArray</strong> – helpers para arrays</summary>
+Provee operaciones <code>push · filter · update · remove · clear</code> sin reescribir lógica.
+</details>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<details>
+<summary><strong>useCookie</strong> – estado ↔️ cookie</summary>
+Sincroniza un valor React con cookies usando **js-cookie**.
+</details>
 
-### `npm run build`
+<details>
+<summary><strong>useCopyToClipboard</strong> – portapapeles fácil</summary>
+Copia texto y devuelve el último valor copiado + flag de éxito.
+</details>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<details>
+<summary><strong>useDarkMode</strong> – tema claro/oscuro persistente</summary>
+Togglea dark mode, respeta <code>prefers-color-scheme</code> y guarda la preferencia.
+</details>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
+<summary><strong>useToggle</strong> – booleano con switch</summary>
+Encapsula <code>useState</code> y te da <code>toggle()</code> o fuerza <code>true/false</code>.
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<details>
+<summary><strong>useTimeout</strong> – setTimeout seguro</summary>
+Helpers <code>reset</code> y <code>clear</code>; evita fugas y callbacks obsoletos.
+</details>
 
-### `npm run eject`
+<details>
+<summary><strong>useStorage</strong> – local/session storage</summary>
+Serializa/des-serializa automáticamente y devuelve <code>[value, set, remove]</code>.
+</details>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<details>
+<summary><strong>useStateWithValidation</strong> – estado + <em>isValid</em></summary>
+Recalcula la validez cada vez que cambias el valor.
+</details>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<details>
+<summary><strong>useStateWithHistory</strong> – undo / redo</summary>
+Mantiene historial limitado (por defecto 10) con <code>back · forward · go</code>.
+</details>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<details>
+<summary><strong>useTranslation</strong> – i18n básico</summary>
+Persiste idioma en <code>localStorage</code> y busca claves anidadas en tu objeto `translations`.
+</details>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+### 🖼️ UI & DOM Observation
+<details>
+<summary><strong>useSize</strong> – dimensiones de un nodo</summary>
+Usa `ResizeObserver` y devuelve el rectángulo <code>{ width, height, top, … }</code>.
+</details>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<details>
+<summary><strong>useOnScreen</strong> – visibilidad en viewport</summary>
+Devuelve `true/false` según <code>IntersectionObserver</code> (ideal para lazy load).
+</details>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<details>
+<summary><strong>useWindowSize</strong> – ancho × alto de ventana</summary>
+Mantiene <code>{ width, height }</code> reactivo en cada `resize`.
+</details>
 
-### Code Splitting
+<details>
+<summary><strong>useMediaQuery</strong> – match de media query</summary>
+Escucha cualquier media query CSS y devuelve un booleano.
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<details>
+<summary><strong>useDeepCompareEffect</strong> – <em>effect</em> con comparación profunda</summary>
+Re-ejecuta solo si el contenido de las dependencias cambia (usa <code>lodash/fp/isEqual</code>).
+</details>
 
-### Analyzing the Bundle Size
+<details>
+<summary><strong>useDebugInformation</strong> – diagnósticos de render</summary>
+Muestra render count, props cambiadas y tiempo entre renders.
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<details>
+<summary><strong>useRenderCount</strong> – cuántos renders</summary>
+Devuelve un número que se incrementa cada render.
+</details>
 
-### Making a Progressive Web App
+<details>
+<summary><strong>usePrevious</strong> – valor previo</summary>
+Guarda el valor anterior de cualquier variable/estado.
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+### 🎯 Events & Interaction
+<details>
+<summary><strong>useClickOutside</strong> – click/touch fuera de un nodo</summary>
+Ejecuta callback cuando el usuario hace click fuera del elemento.
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<details>
+<summary><strong>useLongPress</strong> – pulsación larga</summary>
+Dispara callback tras mantener presionado <i>(delay por defecto 250 ms)</i>.
+</details>
 
-### Deployment
+<details>
+<summary><strong>useHover</strong> – estado <code>hovered</code></summary>
+Booleano <code>true</code> mientras el puntero está encima del elemento.
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<details>
+<summary><strong>useEventListener</strong> – listener universal</summary>
+Añade / quita listeners sin fugas, manteniendo la última versión del callback.
+</details>
 
-### `npm run build` fails to minify
+<details>
+<summary><strong>useDebounce</strong> – debounce de callbacks</summary>
+Retrasa la ejecución hasta que las dependencias no cambien durante <code>delay</code>.
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<details>
+<summary><strong>useEffectOnce</strong> – efecto solo al montar</summary>
+Azúcar sintáctico para <code>useEffect(cb, [])</code>.
+</details>
+
+<details>
+<summary><strong>useUpdateEffect</strong> – efecto que ignora el primer render</summary>
+Útil para reaccionar solo a actualizaciones.
+</details>
+
+---
+
+### 🌐 Browser & Device
+<details>
+<summary><strong>useOnlineStatus</strong> – online / offline</summary>
+Booleano reactivo basado en <code>navigator.onLine</code>.
+</details>
+
+<details>
+<summary><strong>useGeolocation</strong> – coordenadas del usuario</summary>
+Devuelve <code>{ loading, error, data /* coords */ }</code> y sigue los movimientos con <code>watchPosition</code>.
+</details>
